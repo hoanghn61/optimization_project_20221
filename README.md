@@ -7,11 +7,11 @@ The codes using Mix Integer Programming, Constraint Programming
 Basic installation:
 
 For Mac/Linux:
-'''bash
+```bash
 python -m pip install --upgrade --user ortools
-'''
+```
 For Windows:
-'''bash
+```bash
 py -m pip install --upgrade --user ortools
-'''
+```
 #
