@@ -51,19 +51,3 @@ def main():
         f.write(' '.join(map(str,cost_matrix[i])) + '\n')
 
 main()
-
-    
-
-        
-
-
-
-
-
-    
-
-
-
-
-
-
