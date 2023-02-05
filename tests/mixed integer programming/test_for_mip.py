@@ -3,7 +3,7 @@ import itertools
 
 n = int(input('The number of tasks: '))
 m = int(input('The number of workers: '))
-k = int(input('The number of pairs of presequites: '))
+k = int(input('The number of pairs of prerequisites: '))
 
 def random_combination(iterable, r):
     "Random selection from itertools.combinations(iterable, r)"
