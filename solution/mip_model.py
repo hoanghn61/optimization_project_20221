@@ -1,3 +1,4 @@
+#MIP model
 from ortools.linear_solver import pywraplp
 import sys
 def input_data(file_name):
@@ -19,8 +20,7 @@ def input_data(file_name):
       cost.append([float(x) for x in f.readline().split()])
     return n, m, time, worker_for_task, start_time, presequisite, cost
 
-#MIP model
-
+input_data('test.txt')
 def main():
   solver = pywraplp.Solver.CreateSolver('SCIP')
   if not solver:
@@ -28,14 +28,13 @@ def main():
     
   #decisions variables
   num_task, num_worker, timee, worker_for_task, start_time, presequisite, cost = input_data(input())
-  infinity = solver.infinity()
   x = {}
   for worker in range(num_worker):
     for task in range(num_task):
       x[worker, task] = solver.IntVar(0,1,'')
   st = {}
   for i in range(num_task):
-    st[i] = solver.NumVar(0.0, infinity,'')
+    st[i] = solver.NumVar(0.0, solver.infinity() ,'')
   y = {}
   for i in range(num_task):
     y[i] = solver.IntVar(0,num_worker, '')
@@ -79,7 +78,6 @@ def main():
   #salary = max salary among k workers
   L = 0
   U = max([sum([cost[i][j] for i in range(num_task)]) for j in range(num_worker)])
-  print(U)
   d = {}
   for worker in range(num_worker):
     d[worker] = solver.IntVar(0,1,'')
@@ -91,19 +89,19 @@ def main():
 
   #objective function
   solver.Minimize(salary)
-  solver.set_time_limit(300*1000)
+  #solver.set_time_limit(300*1000)
 
   #initialize the solver
   status = solver.Solve()
 
   if status == pywraplp.Solver.OPTIMAL:
     print('Solution:')
+    min_time = min([st[task].solution_value() for task in range(num_task)])
     print(f'Objective value ={solver.Objective().Value()}')
     for task in range(num_task):
-      print(f'task {task} is performed by worker {y[task].solution_value()} at time {st[task].solution_value()}')
+      print(f'task {task} is performed by worker {round(y[task].solution_value())} at time {st[task].solution_value()-min_time + max(start_time)}')
     for worker in range(num_worker):
       print(f'money to pay for worker {worker} is {sum([x[worker,task].solution_value()*cost[task][worker] for task in range(num_task)])}')
-      print(d[worker].solution_value())
   else:
     print('The problem does not have an optimal solution')
   print('\nAdvanced usage:')
