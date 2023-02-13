@@ -34,7 +34,7 @@ def main():
     start_time = []
     for i in range(m):
         start_time.append(random.randint(0,20))
-    presequisite = get_random_pairs(list(range(m)),k)
+    presequisite = get_random_pairs(list(range(n)),k)
     cost_matrix = []
     for i in range(n):
         cost_worker = [random.randint(1,20) for i in range(m)]
