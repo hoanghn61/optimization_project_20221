@@ -1,7 +1,7 @@
 # optimization_project_20221
 A Mini-Project for Fundamental of Optimization Course
 Python code for solving problem 24: Project Implementation Schedule
-The codes using Mix Integer Programming, Constraint Programming \ 
+The codes using Mix Integer Programming, Constraint Programming  
 Please take a look at the REPORT.pdf file for detail information about our solution.
 # Installation
 Basic installation:
