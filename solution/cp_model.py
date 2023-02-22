@@ -104,7 +104,7 @@ model.AddMaxEquality(min_cost, [sum(c[t][w]*tw[t][w] for t in range(nTask)) for 
 
 min_time = model.NewIntVar(0, max_time, 'min_time')
 model.AddMaxEquality(min_time, [taskData[t].end for t in range(nTask)])
-model.Minimize(min_time*max_time+min_cost)
+model.Minimize(min_time*max_cost+min_cost)
 
 fout = open("1.out","w")
 
